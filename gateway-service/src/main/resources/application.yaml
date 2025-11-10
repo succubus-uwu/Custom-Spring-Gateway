@@ -1,0 +1,29 @@
+server:
+  port: 7777
+spring:
+  application:
+    name: gateway-service
+  main:
+    web-application-type: reactive
+  jackson:
+    serialization:
+      INDENT_OUTPUT: true
+    deserialization:
+      FAIL_ON_UNKNOWN_PROPERTIES: false
+  profiles:
+    active: default
+
+gateway:
+  openapi:
+    title: "Gateway API"
+    description: "Aggregated OpenAPI for registered services"
+    version: "0.03.0"
+    servers:
+      - url: ${GATEWAY_URL:http://localhost:7777}
+        description: "gateway local"
+    token: ${GATEWAY_OPENAPI_TOKEN:}
+
+jwt:
+  access:
+    name: ${ACCESS-TOKEN_FIELD:}
+    secret: ${ACCESS-TOKEN_SECRET:}

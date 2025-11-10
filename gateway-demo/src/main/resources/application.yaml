@@ -1,0 +1,24 @@
+server:
+  port: 7776
+
+spring:
+  application:
+    name: demo-service
+  jackson:
+    serialization:
+      INDENT_OUTPUT: false
+    deserialization:
+      FAIL_ON_UNKNOWN_PROPERTIES: false
+  profiles:
+    active: default
+
+service:
+  name: demo-service
+  routes: /api/**
+  open-api-path: /v3/api-docs
+
+gateway:
+  ttl-seconds: 30
+  heartbeat-ms: 20000
+  url: http://localhost:7777/internal/service
+

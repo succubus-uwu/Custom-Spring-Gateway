@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <title>OpenAPI</title>
+    <link rel="stylesheet" href="https://unpkg.com/swagger-ui-dist/swagger-ui.css"/>
+    <link rel="stylesheet" href="https://rawcdn.githack.com/Amoenus/SwaggerDark/master/SwaggerDark.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/JetBrains/JetBrainsMono/web/JetBrainsSans.css"/>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&display=swap"/>
+
+    <style>
+        :root {
+            --jb-sans: 'JetBrains Sans', system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+            --jb-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, 'Liberation Mono', monospace;
+        }
+
+        body, .swagger-ui, .swagger-ui * {
+            font-family: var(--jb-sans) !important;
+        }
+
+        .swagger-ui pre,
+        .swagger-ui code,
+        .swagger-ui pre code,
+        .swagger-ui .microlight,
+        .swagger-ui .highlight-code,
+        .swagger-ui .highlight-code *,
+        .swagger-ui .opblock-body pre,
+        .swagger-ui .response-col_description code,
+        .swagger-ui .model,
+        .swagger-ui .model *,
+        .swagger-ui .model-box,
+        .swagger-ui .model-box *,
+        .swagger-ui .json-schema-view,
+        .swagger-ui .json-schema-view *,
+        .swagger-ui .live-responses-table pre,
+        .swagger-ui .renderedMarkdown code,
+        .swagger-ui .property.primitive,
+        .swagger-ui .prop-type,
+        .swagger-ui .curl,
+        .swagger-ui .code,
+        .swagger-ui .hljs,
+        .swagger-ui .hljs * {
+            font-family: var(--jb-mono) !important;
+        }
+    </style>
+</head>
+<body>
+<div id="swagger-ui"></div>
+<script src="https://unpkg.com/swagger-ui-dist/swagger-ui-bundle.js"></script>
+<script>
+    function getTokenFromQuery() {
+        const params = new URLSearchParams(window.location.search);
+        return params.get("token");
+    }
+
+    window.onload = function () {
+        const token = getTokenFromQuery();
+        const specUrl = token ? "/api/v1/docs?token=" + encodeURIComponent(token) : "/api/v1/docs";
+
+        SwaggerUIBundle({
+            url: specUrl,
+            dom_id: "#swagger-ui"
+        });
+    };
+</script>
+</body>
+</html>
